@@ -11,13 +11,12 @@ import android.widget.RadioGroup;
 
 public class MainActivity extends AppCompatActivity {
 
-    RadioGroup rg = findViewById(R.id.rg);
-    RadioButton radio2 = findViewById(R.id.radio_second);
-    RadioButton radio3 = findViewById(R.id.radio_third);
+    RadioGroup rg;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        rg = findViewById(R.id.rg);
         Button btnNew = findViewById(R.id.btn_new_activity);
         btnNew.setOnClickListener(btnNewListener);
     }
@@ -25,14 +24,15 @@ public class MainActivity extends AppCompatActivity {
     View.OnClickListener btnNewListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+            Intent intent = null;
             switch (rg.getCheckedRadioButtonId()) {
                 case R.id.radio_second:
-                    Intent intent = new Intent(getApplicationContext(), SecondActivity.class);
+                    intent = new Intent(getApplicationContext(), SecondActivity.class);
                     startActivity(intent);
                     break;
                 case R.id.radio_third:
-                    Intent intent2 = new Intent(getApplicationContext(), ThirdActivity.class);
-                    startActivity(intent2);
+                    intent = new Intent(getApplicationContext(), ThirdActivity.class);
+                    startActivity(intent);
                     break;
             }
         }
